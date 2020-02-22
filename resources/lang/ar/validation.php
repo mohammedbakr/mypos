@@ -150,7 +150,7 @@ return [
         'username'              => 'اسم المُستخدم',
         'email'                 => 'البريد الالكتروني',
         'first_name'            => 'الاسم الأول',
-        'last_name'             => 'اسم العائلة',
+        'last_name'             => 'الاسم الاخير',
         'password'              => 'كلمة المرور',
         'password_confirmation' => 'تأكيد كلمة المرور',
         'city'                  => 'المدينة',
@@ -175,5 +175,6 @@ return [
         'time'                  => 'الوقت',
         'available'             => 'مُتاح',
         'size'                  => 'الحجم',
+        'permissions'           => 'الصلاحيات',
     ],
 ];

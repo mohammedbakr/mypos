@@ -13,7 +13,8 @@
         "laminas/laminas-diactoros": "^2.2",
         "laravel/framework": "5.7.*",
         "laravel/tinker": "^1.0",
-        "mcamara/laravel-localization": "^1.4"
+        "mcamara/laravel-localization": "^1.4",
+        "santigarcor/laratrust": "5.0.*"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",
