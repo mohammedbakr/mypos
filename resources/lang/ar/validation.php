@@ -175,6 +175,7 @@ return [
         'time'                  => 'الوقت',
         'available'             => 'مُتاح',
         'size'                  => 'الحجم',
+        'image'                 => 'الصورة',
         'permissions'           => 'الصلاحيات',
     ],
 ];

@@ -31,6 +31,7 @@ class UpdateUserRequest extends FormRequest
             'last_name' => ['required'],
             'email' => ['required', 'email', Rule::unique('users')->ignore($this->segment(4))],
             'password' => ['required', 'confirmed'],
+            'image' => ['image'],
             'permissions' => 'required|min:1',
         ];
     }

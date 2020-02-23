@@ -7,8 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Users\CreateUserRequest;
 use App\Http\Requests\Users\UpdateUserRequest;
-
-use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
 
 class UserController extends Controller
 {
@@ -39,10 +39,14 @@ class UserController extends Controller
         // return view('dashboard.users.index', compact('users'));
 
         // Method (2)
-        $users = User::whereRoleIs('admin')->when($request->search, function($query) use ($request){
+        $users = User::whereRoleIs('admin')->where(function($q) use ($request){
 
-            return $query->where('first_name', 'like', '%' . $request->search . '%')
+            return $q->when($request->search, function($query) use ($request){
+            
+                return $query->where('first_name', 'like', '%' . $request->search . '%')
                  ->orWhere('last_name', 'like', '%' . $request->search . '%');
+                
+            });
 
         })->latest()->paginate(5);
 
@@ -70,8 +74,18 @@ class UserController extends Controller
      */
     public function store(CreateUserRequest $request)
     {
-        $request_data = $request->except(['password', 'password_confirmation', 'permissions']);
+        $request_data = $request->except(['password', 'password_confirmation', 'permissions', 'image']);
         $request_data['password'] = bcrypt($request->password);
+
+        if($request->image){
+
+            Image::make($request->image)->resize(300, null, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save(public_path('uploads/user_images/' . $request->image->hashName()));
+
+            $request_data['image'] = $request->image->hashName();
+
+        }// end of if
 
         $user = User::create($request_data);
 
@@ -116,8 +130,24 @@ class UserController extends Controller
      */
     public function update(UpdateUserRequest $request, User $user)
     {
-        $request_data = $request->except(['password', 'password_confirmation', 'permissions']);
+        $request_data = $request->except(['password', 'password_confirmation', 'permissions', 'image']);
         $request_data['password'] = bcrypt($request->password);
+
+        if($request->image){
+
+            if($user->image != 'default.png'){
+
+                Storage::disk('public_uploads')->delete('/user_images/' . $user->image);
+    
+            }// end of if
+
+            Image::make($request->image)->resize(300, null, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save(public_path('uploads/user_images/' . $request->image->hashName()));
+
+            $request_data['image'] = $request->image->hashName();
+
+        }// end of if
 
         $user->update($request_data);
 
@@ -136,6 +166,12 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
+        if($user->image != 'default.png'){
+
+            Storage::disk('public_uploads')->delete('/user_images/' . $user->image);
+
+        }// end of if
+       
         $user->delete();
 
         session()->flash('success', __('site.deleted_successfully'));        
