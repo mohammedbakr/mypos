@@ -2,6 +2,7 @@
 
 return [
     'dashboard' => 'Dashboard',
+    'logout' => 'Logout',
     'add' => 'Add',
     'edit' => 'Edit',
     'create' => 'Create',
@@ -29,4 +30,6 @@ return [
     'updated_successfully' => 'Updated Successfully',
     'deleted_successfully' => 'Deleted Successfully',
     'permissions' => 'Permissions',
+    'name' => 'Name',
+    'back' => 'Back',
 ];

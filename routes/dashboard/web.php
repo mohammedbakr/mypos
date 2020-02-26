@@ -13,6 +13,9 @@ Route::group(
             
             // User Routes
             Route::resource('/users', 'UserController');
+
+            // Category Routes
+            Route::resource('/categories', 'CategoryController');
         
         
         }); // end of dashboard routes

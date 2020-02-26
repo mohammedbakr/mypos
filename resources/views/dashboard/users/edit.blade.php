@@ -104,6 +104,7 @@
 
                         <div class="form-group">
                             <button type="submit" class="btn btn-primary"><i class="fa fa-edit"></i> @lang('site.edit')</button>
+                            <a href="{{ route('dashboard.users.index') }}" class="btn btn-primary"><i class="fa fa-backward"></i> @lang('site.back')</a>
                         </div>
 
                     </form><!-- end of form -->

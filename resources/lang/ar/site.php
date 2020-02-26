@@ -2,6 +2,7 @@
 
 return [
     'dashboard' => 'الصفحة الرئيسية',
+    'logout' => 'تسجيل الخروج',
     'add' => 'اضف',
     'edit' => 'تعديل',
     'create' => 'انشاء',
@@ -14,7 +15,7 @@ return [
     'search' => 'بحث',
     'users' => 'المشرفين',
     'products' => 'المنتجات',
-    'categories' => 'الاصناف',
+    'categories' => 'الاقسام',
     'orders' => 'الطلبيات',
     'clients' => 'العملاء',
     'no_data_found' => 'للاسف لاتوجد اي سجلات',
@@ -29,4 +30,6 @@ return [
     'updated_successfully' => 'تم تعديل البيانات بنجاح',
     'deleted_successfully' => 'تم حذف البيانات بنجاح',
     'permissions' => 'الصلاحيات',
+    'name' => 'الاسم',
+    'back' => 'رجوع',
 ];
