@@ -24,8 +24,21 @@ class UpdateCategoryRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'name' => ['required', Rule::unique('categories')->ignore($this->segment(2))],
-        ];
+        $rules =[];
+
+        foreach
+         (config('translatable.locales') as $locale) {
+        
+            $rules += [$locale . '.name' => [
+                'required', 
+                Rule::unique('category_translations', 'name')
+                ->ignore($this->category->id, 'category_id')
+                ]
+            ];
+
+        }
+
+        return $rules;
+
     }
 }

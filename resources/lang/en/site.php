@@ -32,4 +32,10 @@ return [
     'permissions' => 'Permissions',
     'name' => 'Name',
     'back' => 'Back',
+    'ar' => [
+        'name' => 'Name In Arabic',
+    ],
+    'en' => [
+        'name' => 'Name In English',
+    ],
 ];

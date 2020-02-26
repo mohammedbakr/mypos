@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Categories;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class CreateCategoryRequest extends FormRequest
 {
@@ -23,8 +24,16 @@ class CreateCategoryRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'name' => ['required', 'unique:categories'],
-        ];
+        $rules =[];
+
+        foreach
+         (config('translatable.locales') as $locale) {
+        
+            $rules += [$locale . '.name' => ['required', Rule::unique('category_translations', 'name')]];
+
+        }
+
+        return $rules;
+        
     }
 }
