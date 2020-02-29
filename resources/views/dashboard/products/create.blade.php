@@ -33,36 +33,50 @@
                         {{ csrf_field() }}
                         {{ method_field('post') }}
 
+                        <div class="form-group">
+                            <label>@lang('site.categories')</label>
+                            <select class="form-control" name="category_id" id="category_id">
+                                <option value="">@lang('site.all_categories')</option>
+                                @foreach ($categories as $category)
+                                <option value="{{ $category->id }}" {{ old('category_id') == $category->id ? 'selected' : '' }}>{{ $category->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
                         @foreach (config('translatable.locales') as $locale)
                         <div class="form-group">
                             <label>@lang('site.'. $locale .'.name')</label>
-                            <input type="text" name="{{ $locale }}[name]" class="form-control" value="{{ old($locale .'.name') }}" required>
+                            <input type="text" name="{{ $locale }}[name]" class="form-control" value="{{ old($locale .'.name') }}">
                         </div>
 
                         <div class="form-group">
                             <label>@lang('site.'. $locale .'.description')</label>
-                            <textarea name="{{ $locale }}[description]" class="form-control ckeditor" required>{{ old($locale .'.description') }}</textarea>
+                            <textarea name="{{ $locale }}[description]" class="form-control ckeditor">{{ old($locale .'.description') }}</textarea>
                         </div>
                         @endforeach
 
                         <div class="form-group">
-                            <label>@lang('site.purchase_price')</label>
-                            <input type="text" name="purchase_price" class="form-control" value="{{ old('purchase_price') }}" required>
+                            <label>@lang('site.image')</label>
+                            <input type="file" name="image" class="form-control image" value="{{ old('image') }}">
                         </div>
 
                         <div class="form-group">
-                            <label>@lang('site.image')</label>
-                            <input type="file" name="image" class="form-control" value="{{ old('image') }}" required>
+                            <img src="{{ asset('uploads/product_images/default.png') }}"  style="width: 100px" class="img-thumbnail image-preview" alt="@lang('site.image')">
+                        </div>
+
+                        <div class="form-group">
+                            <label>@lang('site.purchase_price')</label>
+                            <input type="number" name="purchase_price" class="form-control" value="{{ old('purchase_price') }}">
                         </div>
 
                         <div class="form-group">
                             <label>@lang('site.sale_price')</label>
-                            <input type="text" name="sale_price" class="form-control" value="{{ old('sale_price') }}" required>
+                            <input type="number" name="sale_price" class="form-control" value="{{ old('sale_price') }}">
                         </div>
 
                         <div class="form-group">
                             <label>@lang('site.stock')</label>
-                            <input type="text" name="stock" class="form-control" value="{{ old('stock') }}" required>
+                            <input type="number" name="stock" class="form-control" value="{{ old('stock') }}">
                         </div>
 
                         <div class="form-group">

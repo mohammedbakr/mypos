@@ -26,9 +26,9 @@ class CategoryController extends Controller
      */
     public function index(Request $request)
     {
-        $categories = Category::when($request->search, function($q) use ($request){
-            
-            return $q->where('name', 'like', '%' . $request->search . '%');
+        $categories = Category::when($request->search, function ($q) use ($request) {
+
+            return $q->whereTranslationLike('name', '%' . $request->search . '%');
 
         })->latest()->paginate(5);
 

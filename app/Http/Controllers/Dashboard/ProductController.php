@@ -6,6 +6,10 @@ use App\Category;
 use App\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Product\CreateProductRequest;
+use App\Http\Requests\Users\UpdateProductRequest;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
 
 class ProductController extends Controller
 {
@@ -25,13 +29,19 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {
-        $products = Product::when($request->search, function($q) use ($request){
+        $categories = Category::all();
+
+        $products = Product::when($request->search, function($q) use ($request) {
             
-            return $q->where('name', 'like', '%' . $request->search . '%');
+            return $q->whereTranslationLike('name', '%' . $request->search . '%');
+
+        })->when($request->category_id, function($q) use ($request) {
+
+            return $q->where('category_id', $request->category_id);
 
         })->latest()->paginate(5);
 
-        return view('dashboard.products.index', compact('products'));
+        return view('dashboard.products.index', compact('categories', 'products'));
 
     }// end of index
 
@@ -54,10 +64,26 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateProductRequest $request)
     {
-        //
-    }
+        $request_data = $request->all();
+
+        if($request->image){
+
+            Image::make($request->image)->resize(300, null, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save(public_path('uploads/product_images/' . $request->image->hashName()));
+
+            $request_data['image'] = $request->image->hashName();
+
+        }// end of if
+
+        Product::create($request_data);
+
+        session()->flash('success', __('site.added_successfully'));        
+        return redirect()->route('dashboard.products.index');
+
+    }// end of store
 
     /**
      * Display the specified resource.

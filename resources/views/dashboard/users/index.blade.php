@@ -72,7 +72,8 @@
                                     <td>{{ $user->first_name }}</td>
                                     <td>{{ $user->last_name }}</td>
                                     <td>{{ $user->email }}</td>
-                                    <td><img src="{{ $user->image_path }}" style="width: 100px;" class="img-thumbnail" alt="@lang('site.image')"></td>
+                                    <td>
+                                        <img src="{{ $user->image_path }}" style="width: 100px;" class="img-thumbnail" alt="@lang('site.image')"></td>
                                     <td>
                                         @if (auth()->user()->hasPermission('update_users'))
                                             <a href="{{ route('dashboard.users.edit', $user->id) }}" class="btn btn-info btn-sm"><i class="fa fa-edit"></i> @lang('site.edit')</a>
