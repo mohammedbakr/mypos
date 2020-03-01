@@ -16,6 +16,7 @@ return [
     'users' => 'Users',
     'products' => 'Products',
     'categories' => 'Categories',
+    'category' => 'Category',
     'all_categories' => 'All Categories',
     'orders' => 'Orders',
     'clients' => 'Clients',

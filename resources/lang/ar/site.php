@@ -16,6 +16,7 @@ return [
     'users' => 'المشرفين',
     'products' => 'المنتجات',
     'categories' => 'الاقسام',
+    'category' => 'القسم',
     'all_categories' => 'جميع الاقسام',
     'orders' => 'الطلبيات',
     'clients' => 'العملاء',

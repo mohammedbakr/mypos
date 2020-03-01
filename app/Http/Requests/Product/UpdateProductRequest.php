@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Product;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateProductRequest extends FormRequest
 {
@@ -13,7 +14,7 @@ class UpdateProductRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,8 +24,26 @@ class UpdateProductRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            //
+        $rules =[
+            'category_id' => ['required'],
         ];
+
+        foreach
+         (config('translatable.locales') as $locale) {
+        
+            $rules += [$locale . '.name' => ['required', Rule::unique('product_translations', 'name')
+                ->ignore($this->product->id, 'product_id')]];
+            $rules += [$locale . '.description' => ['required']];
+
+        }
+
+        $rules +=[
+            'image' => ['image'],
+            'purchase_price' => ['required', 'integer'],
+            'sale_price' => ['required', 'integer'],
+            'stock' => ['required', 'integer']
+        ];
+
+        return $rules;
     }
 }

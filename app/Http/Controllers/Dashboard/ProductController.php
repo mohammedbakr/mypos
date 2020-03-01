@@ -7,7 +7,7 @@ use App\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Product\CreateProductRequest;
-use App\Http\Requests\Users\UpdateProductRequest;
+use App\Http\Requests\Product\UpdateProductRequest;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 
@@ -104,8 +104,11 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
-    }
+        $categories = Category::all();
+
+        return view('dashboard.products.edit', compact('categories', 'product'));
+
+    }// end of edit
 
     /**
      * Update the specified resource in storage.
@@ -114,10 +117,32 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(UpdateProductRequest $request, Product $product)
     {
-        //
-    }
+        $request_data = $request->all();
+
+        if($request->image){
+
+            if($product->image != 'default.png'){
+
+                Storage::disk('public_uploads')->delete('/product_images/' . $product->image);
+    
+            }// end of if
+
+            Image::make($request->image)->resize(300, null, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save(public_path('uploads/product_images/' . $request->image->hashName()));
+
+            $request_data['image'] = $request->image->hashName();
+
+        }// end of if
+
+        $product->update($request_data);
+
+        session()->flash('success', __('site.added_successfully'));        
+        return redirect()->route('dashboard.products.index');
+
+    }// end of update
 
     /**
      * Remove the specified resource from storage.
@@ -127,6 +152,16 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
-    }
+        if($product->image != 'default.png'){
+
+            Storage::disk('public_uploads')->delete('/product_images/' . $product->image);
+
+        }// end of if
+
+        $product->delete();
+
+        session()->flash('success', __('site.added_successfully'));        
+        return redirect()->route('dashboard.products.index');
+
+    }// end of destroy
 }
