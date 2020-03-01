@@ -6,7 +6,7 @@
 
         <section class="content-header">
 
-            <h1>@lang('site.dashboard')</h1>
+            <h1>@lang('site.categories')</h1>
 
             <ol class="breadcrumb">
                 <li><a href="{{route('dashboard.index')}}"><i class="fa fa-dashboard"></i> @lang('site.dashboard')</a></li>
@@ -22,7 +22,7 @@
                 <div class="box-header with-border">
 
                     <h3 class="box-title" style="margin-bottom: 15px">@lang('site.categories') 
-                        {{-- <small>{{ $categories->total() }}</small> --}}
+                        <small>{{ $categories->total() }}</small>
                     </h3>
 
                     <form action="{{ route('dashboard.categories.index') }}" method="get">
@@ -58,6 +58,8 @@
                             <tr>
                                 <th>#</th>
                                 <th>@lang('site.name')</th>
+                                <th>@lang('site.products_count')</th>
+                                <th>@lang('site.related_products')</th>
                                 <th>@lang('site.action')</th>
                             </tr>
                             </thead>
@@ -67,6 +69,10 @@
                                 <tr>
                                     <td>{{ $index + 1 }}</td>
                                     <td>{{ $category->name }}</td>
+                                    <td>{{ $category->products->count() }}</td>
+                                    <td>
+                                        <a href="{{ route('dashboard.products.index', ['category_id' => $category->id]) }}" class="btn btn-info btn-sm">@lang('site.related_products')</a>
+                                    </td>
                                     <td>
                                         @if (auth()->user()->hasPermission('update_categories'))
                                             <a href="{{ route('dashboard.categories.edit', $category->id) }}" class="btn btn-info btn-sm"><i class="fa fa-edit"></i> @lang('site.edit')</a>

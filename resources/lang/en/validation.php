@@ -147,9 +147,11 @@ return [
     'attributes' => [
         'ar'                    => [
             'name'                  => 'Name In Arabic',
+            'description'           => 'Description In Arabic',
         ],
         'en'                    => [
             'name'                  => 'Name In English',
+            'description'           => 'Description In English',
         ],
     ],
 

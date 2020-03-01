@@ -16,6 +16,8 @@ return [
     'users' => 'Users',
     'products' => 'Products',
     'categories' => 'Categories',
+    'category' => 'Category',
+    'all_categories' => 'All Categories',
     'orders' => 'Orders',
     'clients' => 'Clients',
     'no_data_found' => 'No data found',
@@ -34,8 +36,17 @@ return [
     'back' => 'Back',
     'ar' => [
         'name' => 'Name In Arabic',
+        'description' => 'Description In Arabic',
     ],
     'en' => [
         'name' => 'Name In English',
+        'description' => 'Description In English',
     ],
+    'purchase_price' => 'Purchase Price',
+    'sale_price' => 'Sale Price',
+    'stock' => 'Stock',
+    'description' => 'Description',
+    'profit_percent' => 'Profit Percent',
+    'products_count' => 'Products Count',
+    'related_products' => 'Related Products',
 ];

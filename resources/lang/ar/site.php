@@ -16,6 +16,8 @@ return [
     'users' => 'المشرفين',
     'products' => 'المنتجات',
     'categories' => 'الاقسام',
+    'category' => 'القسم',
+    'all_categories' => 'جميع الاقسام',
     'orders' => 'الطلبيات',
     'clients' => 'العملاء',
     'no_data_found' => 'للاسف لاتوجد اي سجلات',
@@ -34,8 +36,17 @@ return [
     'back' => 'رجوع',
     'ar' => [
         'name' => 'الاسم باللغة العربية',
+        'description' => 'الوصف باللغة العربية',
     ],
     'en' => [
         'name' => 'الاسم باللغة الانجليزية',
+        'description' => 'الوصف باللغة الانجليزية',
     ],
+    'purchase_price' => 'سعر الشراء',
+    'sale_price' => 'سعر البيع',
+    'stock' => 'المخزن',
+    'description' => 'الوصف',
+    'profit_percent' => 'المكسب',
+    'products_count' => 'عدد المنتجات',
+    'related_products' => 'المنتجات المرتبطة',
 ];
