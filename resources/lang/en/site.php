@@ -49,4 +49,8 @@ return [
     'profit_percent' => 'Profit Percent',
     'products_count' => 'Products Count',
     'related_products' => 'Related Products',
+    'phone' => 'Phone',
+    'phone.0' => 'Phone No.1',
+    'phone.1' => 'Phone No.2',
+    'address' => 'Address',
 ];

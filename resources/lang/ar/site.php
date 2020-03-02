@@ -49,4 +49,8 @@ return [
     'profit_percent' => 'المكسب',
     'products_count' => 'عدد المنتجات',
     'related_products' => 'المنتجات المرتبطة',
+    'phone' => 'التليفون',
+    'phone.0' => 'التليفون الاول',
+    'phone.1' => 'التليفون الثاني',
+    'address' => 'العنوان',
 ];

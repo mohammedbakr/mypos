@@ -145,6 +145,8 @@ return [
     */
 
     'attributes' => [
+        'phone.0'               => 'Phone No.1',
+        'phone.1'               => 'Phone No.2',
         'ar'                    => [
             'name'                  => 'Name In Arabic',
             'description'           => 'Description In Arabic',
