@@ -3,6 +3,9 @@
 return [
     'dashboard' => 'Dashboard',
     'logout' => 'Logout',
+    'login' => 'Login',
+    'Sign in to start your session' => 'Sign in to start your session',
+    'remember_me' => 'remember_me',
     'add' => 'Add',
     'edit' => 'Edit',
     'create' => 'Create',
@@ -15,6 +18,7 @@ return [
     'search' => 'Search',
     'users' => 'Users',
     'products' => 'Products',
+    'product' => 'Product',
     'categories' => 'Categories',
     'category' => 'Category',
     'all_categories' => 'All Categories',
@@ -53,4 +57,9 @@ return [
     'phone.0' => 'Phone No.1',
     'phone.1' => 'Phone No.2',
     'address' => 'Address',
+    'add_order' => 'Add Order',
+    'quantity' => 'Quantity',
+    'price' => 'Price',
+    'previous_orders' => 'Previous Orders',
+    'total' => 'Total',
 ];

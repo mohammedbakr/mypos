@@ -88,7 +88,7 @@ class CategoryController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  UpdateCategoryRequest $request
      * @param  \App\Category  $category
      * @return \Illuminate\Http\Response
      */

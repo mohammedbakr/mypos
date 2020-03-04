@@ -3,6 +3,9 @@
 return [
     'dashboard' => 'الصفحة الرئيسية',
     'logout' => 'تسجيل الخروج',
+    'login' => 'تسجيل الدخول',
+    'Sign in to start your session' => 'تسجيل الدخول',
+    'remember_me' => 'تذكرني',
     'add' => 'اضف',
     'edit' => 'تعديل',
     'create' => 'انشاء',
@@ -15,6 +18,7 @@ return [
     'search' => 'بحث',
     'users' => 'المشرفين',
     'products' => 'المنتجات',
+    'product' => 'المنتج',
     'categories' => 'الاقسام',
     'category' => 'القسم',
     'all_categories' => 'جميع الاقسام',
@@ -53,4 +57,9 @@ return [
     'phone.0' => 'التليفون الاول',
     'phone.1' => 'التليفون الثاني',
     'address' => 'العنوان',
+    'add_order' => 'اضف طلب',
+    'quantity' => 'الكمية',
+    'price' => 'السعر',
+    'previous_orders' => 'المنتجات السابقة',
+    'total' => 'المجموع',
 ];

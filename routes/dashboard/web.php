@@ -9,10 +9,8 @@ Route::group(
 
         Route::prefix('dashboard')->name('dashboard.')->middleware('auth')->group(function(){
 
-            Route::get('/index', 'DashboardController@index')->name('index');
-            
-            // User Routes
-            Route::resource('/users', 'UserController');
+            // Dashboard Route
+            Route::get('/', 'WelcomeController@index')->name('welcome');
 
             // Category Routes
             Route::resource('/categories', 'CategoryController');
@@ -22,7 +20,11 @@ Route::group(
 
             // Client Routes
             Route::resource('/clients', 'ClientController');
-        
+            Route::resource('/clients.orders', 'client\OrderController');
+
+            // User Routes
+            Route::resource('/users', 'UserController');
+
         
         }); // end of dashboard routes
 
