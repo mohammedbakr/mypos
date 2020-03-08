@@ -9,7 +9,7 @@
             <h1>@lang('site.categories')</h1>
 
             <ol class="breadcrumb">
-                <li><a href="{{route('dashboard.index')}}"><i class="fa fa-dashboard"></i> @lang('site.dashboard')</a></li>
+                <li><a href="{{route('dashboard.welcome')}}"><i class="fa fa-dashboard"></i> @lang('site.dashboard')</a></li>
                 <li class="active"> @lang('site.categories')</li>
             </ol>
 

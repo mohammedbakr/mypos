@@ -13,7 +13,7 @@
         </div>
 
         <ul class="sidebar-menu" data-widget="tree">
-            <li><a href="{{ route('dashboard.index') }}"><i class="fa fa-th"></i><span>@lang('site.dashboard')</span></a></li>
+            <li><a href="{{ route('dashboard.welcome') }}"><i class="fa fa-th"></i><span>@lang('site.dashboard')</span></a></li>
 
             @if (auth()->user()->hasPermission('read_categories'))
             <li><a href="{{ route('dashboard.categories.index') }}"><i class="fa fa-th"></i><span>@lang('site.categories')</span></a></li>

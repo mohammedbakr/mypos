@@ -38,9 +38,9 @@ class CreateProductRequest extends FormRequest
 
         $rules +=[
             'image' => ['image'],
-            'purchase_price' => ['required', 'integer'],
-            'sale_price' => ['required', 'integer'],
-            'stock' => ['required', 'integer']
+            'purchase_price' => ['required', 'numeric'],
+            'sale_price' => ['required', 'numeric'],
+            'stock' => ['required', 'numeric']
         ];
 
         return $rules;

@@ -61,7 +61,7 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  CreateProductRequest $request
      * @return \Illuminate\Http\Response
      */
     public function store(CreateProductRequest $request)
@@ -113,7 +113,7 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  UpdateProductRequest $request
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */

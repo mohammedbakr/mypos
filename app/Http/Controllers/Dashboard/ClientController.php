@@ -54,7 +54,7 @@ class ClientController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  CreateClientRequest $request
      * @return \Illuminate\Http\Response
      */
     public function store(CreateClientRequest $request)
@@ -96,7 +96,7 @@ class ClientController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  UpdateClientRequest $request
      * @param  \App\Client  $client
      * @return \Illuminate\Http\Response
      */
