@@ -6,6 +6,9 @@ use App\Client;
 use App\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Orders\CreateOrderRequest;
+use App\Order;
+use App\Product;
 
 class OrderController extends Controller
 {
@@ -49,7 +52,30 @@ class OrderController extends Controller
      */
     public function store(CreateOrderRequest $request, Client $client)
     {
+        $order = $client->orders()->create([]);
 
+        $order->products()->attach($request->products);
+
+        $total_price = 0;
+
+        foreach ($request->products as $id=>$quantity) {
+            
+            $product = Product::FindOrFail($id);
+            $total_price += $product->sale_price * $quantity['quantity'];
+
+            $product->update([
+
+                'stock' => $product->stock - $quantity['quantity']
+            
+            ]);
+
+        }// end of foreach
+
+        $order->update([
+            
+            'total_price' => $total_price
+        
+        ]);
 
     }// end of store
 
