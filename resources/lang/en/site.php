@@ -69,4 +69,5 @@ return [
     'created_at' => 'Created At',
     'print' => 'Print',
     'loading' => 'Loading',
+    'sales_graph' => 'Sales Graph',
 ];
