@@ -142,21 +142,21 @@
 
                     </div><!-- end of box -->
 
-                    {{-- @if ($client->orders->count() > 0) --}}
+                    @if ($client->orders->count() > 0)
 
                         <div class="box box-primary">
 
                             <div class="box-header">
 
                                 <h3 class="box-title" style="margin-bottom: 10px">@lang('site.previous_orders')
-                                    {{-- <small>{{ $orders->total() }}</small> --}}
+                                    <small>{{ $orders->total() }}</small>
                                 </h3>
 
                             </div><!-- end of box header -->
 
                             <div class="box-body">
 
-                                {{-- @foreach ($orders as $order)
+                                @foreach ($orders as $order)
 
                                     <div class="panel-group">
 
@@ -186,15 +186,15 @@
 
                                     </div><!-- end of panel group -->
 
-                                @endforeach --}}
+                                @endforeach
 
-                                {{-- {{ $orders->links() }} --}}
+                                {{ $orders->links() }}
 
                             </div><!-- end of box body -->
 
                         </div><!-- end of box -->
 
-                    {{-- @endif --}}
+                    @endif
 
                 </div><!-- end of col -->
 

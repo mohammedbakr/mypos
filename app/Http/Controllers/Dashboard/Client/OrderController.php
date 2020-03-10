@@ -23,16 +23,6 @@ class OrderController extends Controller
     }// end of construct
 
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request)
-    {
-
-    }// end of index
-
-    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -40,8 +30,9 @@ class OrderController extends Controller
     public function create(Client $client)
     {
         $categories = Category::with('products')->get();
+        $orders = $client->orders()->with('products')->paginate(5);
 
-        return view('dashboard.clients.orders.create', compact('client', 'categories'));
+        return view('dashboard.clients.orders.create', compact('client', 'categories', 'orders'));
 
     }// end of create
 
@@ -61,17 +52,6 @@ class OrderController extends Controller
     }// end of store
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Order  $order
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Order $order)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Order  $order
@@ -80,8 +60,9 @@ class OrderController extends Controller
     public function edit(Client $client, Order $order)
     {
         $categories = Category::with('products')->get();
+        $orders = $client->orders()->with('products')->paginate(5);
 
-        return view('dashboard.clients.orders.edit', compact('client', 'order', 'categories'));
+        return view('dashboard.clients.orders.edit', compact('client', 'order', 'categories', 'orders'));
 
     }// end of edit
 
@@ -102,17 +83,6 @@ class OrderController extends Controller
         return redirect()->route('dashboard.orders.index');
 
     }// end of update
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Order  $order
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Client $client, Order $order)
-    {
-       
-    }
 
     private function attach_order($request, $client)
     {
