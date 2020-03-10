@@ -21,6 +21,10 @@ Route::group(
             // Client Routes
             Route::resource('/clients', 'ClientController');
             Route::resource('/clients.orders', 'client\OrderController');
+            
+            // Order Routes
+            Route::resource('/orders', 'OrderController');
+            Route::get('/orders/{order}/products', 'OrderController@products')->name('orders.products');
 
             // User Routes
             Route::resource('/users', 'UserController');
