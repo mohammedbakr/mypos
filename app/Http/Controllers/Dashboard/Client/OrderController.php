@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Dashboard\Client;
 
 use App\Client;
 use App\Category;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Orders\CreateOrderRequest;
 use App\Http\Requests\Orders\UpdateOrderRequest;
