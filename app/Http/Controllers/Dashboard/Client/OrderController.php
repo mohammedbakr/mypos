@@ -7,6 +7,7 @@ use App\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Orders\CreateOrderRequest;
+use App\Http\Requests\Orders\UpdateOrderRequest;
 use App\Order;
 use App\Product;
 
@@ -52,6 +53,69 @@ class OrderController extends Controller
      */
     public function store(CreateOrderRequest $request, Client $client)
     {
+        $this->attach_order($request, $client);
+
+        session()->flash('success', __('site.added_successfully'));
+        return redirect()->route('dashboard.orders.index');
+
+    }// end of store
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Order  $order
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Order $order)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Order  $order
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Client $client, Order $order)
+    {
+        $categories = Category::with('products')->get();
+
+        return view('dashboard.clients.orders.edit', compact('client', 'order', 'categories'));
+
+    }// end of edit
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  UpdateOrderRequest $request
+     * @param  \App\Order  $order
+     * @return \Illuminate\Http\Response
+     */
+    public function update(UpdateOrderRequest $request, Client $client, Order $order)
+    {
+        $this->detach_order($order);
+
+        $this->attach_order($request, $client);
+
+        session()->flash('success', __('site.updated_successfully'));
+        return redirect()->route('dashboard.orders.index');
+
+    }// end of update
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Order  $order
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Client $client, Order $order)
+    {
+       
+    }
+
+    private function attach_order($request, $client)
+    {
         $order = $client->orders()->create([]);
 
         $order->products()->attach($request->products);
@@ -77,53 +141,20 @@ class OrderController extends Controller
         
         ]);
 
-    }// end of store
+    }// end of attach order
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Order  $order
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Order $order)
+    private function detach_order($order)
     {
-        //
-    }
+        foreach ($order->products as $product) {
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Order  $order
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Client $client, Order $order)
-    {
+            $product->update([
+                'stock' => $product->stock + $product->pivot->quantity
+            ]);
 
+        }// end of foreach
+        
+        $order->delete();
 
-    }// end of edit
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  UpdateOrderRequest $request
-     * @param  \App\Order  $order
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdateOrderRequest $request, Client $client, Order $order)
-    {
-
-
-    }// end of update
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Order  $order
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Client $client, Order $order)
-    {
-       
-    }
+    }// end of detach order
 
 }// end of controller
