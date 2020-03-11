@@ -70,4 +70,5 @@ return [
     'print' => 'طباعة',
     'loading' => 'جاري التحميل',
     'sales_graph' => 'الرسم البياني للمبيعات',
+    'not_available_anymore' => 'تم نفاذ الكمية',
 ];

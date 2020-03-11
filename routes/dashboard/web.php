@@ -20,7 +20,7 @@ Route::group(
 
             // Client Routes
             Route::resource('/clients', 'ClientController');
-            Route::resource('/clients.orders', 'client\OrderController');
+            Route::resource('/clients.orders', 'Client\OrderController');
             
             // Order Routes
             Route::resource('/orders', 'OrderController');

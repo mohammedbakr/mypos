@@ -70,4 +70,5 @@ return [
     'print' => 'Print',
     'loading' => 'Loading',
     'sales_graph' => 'Sales Graph',
+    'not_available_anymore' => 'Not Available Anymore',
 ];

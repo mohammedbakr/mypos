@@ -24,7 +24,7 @@ class WelcomeController extends Controller
 
             DB::raw('Year(created_at) as year'),
             DB::raw('MONTH(created_at) as month'),
-            DB::raw('SUM(total_price) as sum'),
+            DB::raw('SUM(total_price) as sum')
 
         )->groupBy('month')->get();
 

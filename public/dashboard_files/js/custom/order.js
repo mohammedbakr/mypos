@@ -7,18 +7,33 @@ $(document).ready(function () {
         var name = $(this).data('name');
         var id = $(this).data('id');
         var price = $.number($(this).data('price'), 2);
+        var stock = $(this).data('stock');
 
         $(this).removeClass('btn-success').addClass('btn-default disabled');
 
         var html =
             `<tr>
                 <td>${name}</td>
-                <td><input type="number" name="products[${id}][quantity]" data-price="${price}" class="form-control input-sm product-quantity" min="1" value="1"></td>
+                <td><input type="number" name="products[${id}][quantity]" data-price="${price}" class="form-control input-sm product-quantity" min="1" max="${stock}" value="1"></td>
                 <td class="product-price">${price}</td>               
                 <td><button class="btn btn-danger btn-sm remove-product-btn" data-id="${id}"><span class="fa fa-trash"></span></button></td>
             </tr>`;
 
         $('.order-list').append(html);
+
+        // if quantity > stock then quantity = stock
+        // & if quantity <= 0 then quantity = 1
+        $(':input[type="number"]').on('input', function (){
+
+            if($(this).val() >= stock){
+                $(this).val(Number(stock));
+            }
+
+            if($(this).val() <= 0){
+                $(this).val(1);
+            }
+
+        });
 
         //to calculate total price
         calculateTotal();
@@ -50,7 +65,7 @@ $(document).ready(function () {
 
         var quantity = Number($(this).val()); //2
         var unitPrice = parseFloat($(this).data('price').replace(/,/g, '')); //150
-        console.log(unitPrice);
+       
         $(this).closest('tr').find('.product-price').html($.number(quantity * unitPrice, 2));
         calculateTotal();
 
