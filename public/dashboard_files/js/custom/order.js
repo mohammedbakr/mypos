@@ -21,7 +21,7 @@ $(document).ready(function () {
 
         $('.order-list').append(html);
 
-        // if quantity > stock then quantity = stock
+        // if quantity > stock that specific product will be removed
         // & if quantity <= 0 then quantity = 1
         $(':input[type="number"]').on('input', function (){
 
@@ -30,7 +30,8 @@ $(document).ready(function () {
             }
 
             if($(this).val() <= 0){
-                $(this).val(1);
+                $(this).closest('tr').remove();
+                $('#product-' + id).removeClass('btn-default disabled').addClass('btn-success');
             }
 
         });
