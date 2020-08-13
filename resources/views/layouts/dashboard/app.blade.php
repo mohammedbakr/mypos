@@ -89,7 +89,7 @@
     <header class="main-header">
 
         {{--<!-- Logo -->--}}
-        <a href="{{ asset('dashboard') }}/index2.html" class="logo">
+        <a href="{{ asset('dashboard') }}" class="logo">
             {{--<!-- mini logo for sidebar mini 50x50 pixels -->--}}
             <span class="logo-mini"><b>A</b>LT</span>
             <span class="logo-lg"><b>Admin</b>LTE</span>
@@ -108,7 +108,7 @@
                 <ul class="nav navbar-nav">
 
                     <!-- Messages: style can be found in dropdown.less-->
-                    <li class="dropdown messages-menu">
+                    {{-- <li class="dropdown messages-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <i class="fa fa-envelope-o"></i>
                             <span class="label label-success">4</span>
@@ -138,10 +138,10 @@
                                 <a href="#">See All Messages</a>
                             </li>
                         </ul>
-                    </li>
+                    </li> --}}
 
                     {{--<!-- Notifications: style can be found in dropdown.less -->--}}
-                    <li class="dropdown notifications-menu">
+                    {{-- <li class="dropdown notifications-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <i class="fa fa-bell-o"></i>
                             <span class="label label-warning">10</span>
@@ -149,7 +149,7 @@
                         <ul class="dropdown-menu">
                             <li class="header">You have 10 notifications</li>
                             <li>
-                                {{--<!-- inner menu: contains the actual data -->--}}
+                                <!-- inner menu: contains the actual data -->
                                 <ul class="menu">
                                     <li>
                                         <a href="#">
@@ -162,7 +162,7 @@
                                 <a href="#">View all</a>
                             </li>
                         </ul>
-                    </li>
+                    </li> --}}
 
                     {{--<!-- Tasks: style can be found in dropdown.less -->--}}
                     <li class="dropdown tasks-menu">
@@ -198,7 +198,7 @@
 
                                 <p>
                                     {{ auth()->user()->first_name }} {{ auth()->user()->last_name }}
-                                    <small>Member since 2 days</small>
+                                    <small>{{ auth()->user()->created_at->diffForHumans() }}</small>
                                 </p>
                             </li>
 
